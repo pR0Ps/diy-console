@@ -9,6 +9,8 @@ int BUTTONS[] = {2, 3, 4, 5}; // up, down, left, right
 boolean pressed[4];
 
 int BLINK_PERIOD = 3;
+int P_LEDX = 1;
+int P_LEDY = 1;
 
 int px;
 int py;
@@ -71,7 +73,7 @@ int getMaze(int x, int y){
   
   // OOB is always a solid tile
   if (idx < 0 || idx > MAZE_MAXX * MAZE_MAXY){
-    return true; 
+    return true;
   }
   return maze[idx];
 }
@@ -80,11 +82,11 @@ void draw(){
   // Player
   if (framecnt < BLINK_PERIOD){
     // Turn on player light
-    digitalWrite(LEDS[to1D(1, 1, LED_MAXX)], HIGH);
+    digitalWrite(LEDS[to1D(P_LEDX, P_LEDY, LED_MAXX)], HIGH);
   }
   else{
     // Turn off player light
-    digitalWrite(LEDS[to1D(1, 1, LED_MAXX)], LOW);
+    digitalWrite(LEDS[to1D(P_LEDX, P_LEDY, LED_MAXX)], LOW);
     
     // Reset frame counter
     if (framecnt >= BLINK_PERIOD*2){
@@ -95,7 +97,10 @@ void draw(){
   //Maze
   for (int i = 0; i < LED_MAXX; i++){
     for(int j = 0; j < LED_MAXY; j++){
-      LEDS[to1D(i, j, LED_MAXX)] = getMaze(px + i + 1, py + j + 1) ? HIGH : LOW;
+      // Don't overwrite player
+      if (i != P_LEDX && j != P_LEDY){
+        digitalWrite(LEDS[to1D(i, j, LED_MAXX)], getMaze(px + i - P_LEDX, py + j - P_LEDY) ? HIGH : LOW)
+      }
     }
   }
   
