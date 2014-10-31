@@ -19,7 +19,7 @@ int framecnt;
 
 int MAZE_MAXX = 9;
 int MAZE_MAXY = 9;
-/*
+
 boolean maze[] = {
   1,0,1,1,1,1,1,1,1,
   1,0,1,0,0,0,0,1,1,
@@ -30,17 +30,6 @@ boolean maze[] = {
   1,0,0,0,0,0,0,0,1,
   1,0,1,1,1,0,1,0,1,
   1,1,1,1,1,1,1,0,1};
-*/
-boolean maze[] = {
-  1,1,1,1,1,1,1,1,1,
-  1,0,0,0,0,0,0,0,1,
-  1,0,0,0,0,0,0,0,1,
-  1,0,0,0,0,0,0,0,1,
-  1,0,0,0,0,0,0,0,1,
-  1,0,0,0,0,0,0,0,1,
-  1,0,0,0,0,0,0,0,1,
-  1,0,0,0,0,0,0,0,1,
-  1,1,1,1,1,1,1,1,1,};
 
 void setup() {
 
@@ -57,8 +46,8 @@ void setup() {
   }
   
   // Set player
-  px = 3;
-  py = 3;
+  px = 1;
+  py = 0;
   
   framecnt = 0;
   
@@ -99,7 +88,7 @@ void draw(){
     for(int j = 0; j < LED_MAXY; j++){
       // Don't overwrite player
       if (i != P_LEDX && j != P_LEDY){
-        digitalWrite(LEDS[to1D(i, j, LED_MAXX)], getMaze(px + i - P_LEDX, py + j - P_LEDY) ? HIGH : LOW)
+        digitalWrite(LEDS[to1D(i, j, LED_MAXX)], getMaze(px + i - P_LEDX, py + j - P_LEDY) ? HIGH : LOW);
       }
     }
   }
