@@ -58,13 +58,12 @@ int to1D(int x, int y, int xsize){
 }
 
 int getMaze(int x, int y){
-  int idx = to1D(x, y, MAZE_MAXX);
   
   // OOB is always a solid tile
-  if (idx < 0 || idx > MAZE_MAXX * MAZE_MAXY){
+  if (y < 0 || y >= MAZE_MAXY || x < 0 || x >= MAZE_MAXX){
     return true;
   }
-  return maze[idx];
+  return maze[to1D(x, y, MAZE_MAXX)];
 }
 
 void draw(){
