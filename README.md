@@ -34,6 +34,10 @@ A simple program to make sure everything is wired up properly.
 It flashes each LED on, then lights up the first 4 LEDs in response to
 button presses
 
+Flag Capture
+------------
+Use the arrow keys to capture the flashing dot.
+
 Maze
 ----
 The player (the flashing LED) has to navigate through the maze using
